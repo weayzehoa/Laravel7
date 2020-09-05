@@ -15,43 +15,26 @@ use Illuminate\Support\Facades\Route;
 //get('路徑','控制器檔案名稱@程式名稱)
 Route::get('/', 'HomeController@index');
 
-//使用 php artisan make:controller PhotosController --resource 直接建立出七大路由控制器
-//新增、瀏覽、編輯、刪除及前三者分割成兩個動作(索引,儲存)
-//index, create, show, edit, update, store, delete
-//等同於 下面七個 Route
-// Route::get('photos','PhotosController@index'); //顯示所有
-// Route::get('photos/create','PhotosController@create'); //建立
-// Route::post('photos','PhotosController@store'); //儲存
-// Route::get('photos/{photo}','PhotosController@show'); //顯示單個
-// Route::get('photos/{photo}/edit','PhotosController@edit'); //編輯
-// Route::put/patch('photos/{photo}','PhotosController@update'); //更新
-// Route::delete('photos','PhotosController@destroy'); //刪除
-Route::resource('photos','PhotosController');
-
-//pattern('變數','比對參數,使用正則規範{5}為數量');
-Route::pattern('student_no', 's[0-9]{5}');
-
-//條件
-//where(['變數名稱' => '(chinese|english|math)']);
+Route::pattern('student_no', 's[0-9]{10}');
 Route::group(['prefix' => 'students'], function(){
-    Route::get('{student_no}', [
-        'as' => 'students',
-        'uses' => 'StudentsController@getStudentData'
-    ]);
+	Route::get('{student_no}', [
+		'as' => 'students',
+		'uses' => 'StudentsController@getStudentData'
+	]);
 
-    Route::get('{student_no}/score/{subject?}', [
-        'as' => 'students.score',
-        'uses' => 'StudentsController@getStudentScore'
-    ])->where(['subject' => '(chinese|english|math)']);
+	Route::get('{student_no}/score/{subject?}', [
+		'as' => 'students.score',
+		'uses' => 'StudentsController@getStudentScore'
+	])->where(['subject' => '(chinese|english|math)']);
 });
 
-//使用 php artison make:controller Cool\TestController 建立一個控制器在app\Http\Cool目錄下
-// Route::get('cool','Cool\TestController@index');
+Route::prefix('board')->group(function(){
+    Route::get('/', 'BoardController@getIndex')->name('board.index');
+    Route::get('/name', 'BoardController@getName')->name('board.name');
+});
 
-// 透過設定群組的namespace屬性統一調整群組中所使用的的命名空間.
-// 注意 Route::get('cool','TestController@index'); 沒有目錄名稱
 Route::group(['namespace' => 'Cool'], function(){
-    Route::get('cool','TestController@index');
+	Route::get('cool', 'TestController@index');
 });
 
 /*
@@ -59,6 +42,45 @@ Route::group(['namespace' => 'Cool'], function(){
 | 下方為練習範本
 |--------------------------------------------------------------------------
 */
+// //使用 php artisan make:controller PhotosController --resource 直接建立出七大路由控制器
+// //新增、瀏覽、編輯、刪除及前三者分割成兩個動作(索引,儲存)
+// //index, create, show, edit, update, store, delete
+// //等同於 下面七個 Route
+// // Route::get('photos','PhotosController@index'); //顯示所有
+// // Route::get('photos/create','PhotosController@create'); //建立
+// // Route::post('photos','PhotosController@store'); //儲存
+// // Route::get('photos/{photo}','PhotosController@show'); //顯示單個
+// // Route::get('photos/{photo}/edit','PhotosController@edit'); //編輯
+// // Route::put/patch('photos/{photo}','PhotosController@update'); //更新
+// // Route::delete('photos','PhotosController@destroy'); //刪除
+// Route::resource('photos','PhotosController');
+
+// //pattern('變數','比對參數,使用正則規範{5}為數量');
+// Route::pattern('student_no', 's[0-9]{5}');
+
+// //條件
+// //where(['變數名稱' => '(chinese|english|math)']);
+// Route::group(['prefix' => 'students'], function(){
+//     Route::get('{student_no}', [
+//         'as' => 'students',
+//         'uses' => 'StudentsController@getStudentData'
+//     ]);
+
+//     Route::get('{student_no}/score/{subject?}', [
+//         'as' => 'students.score',
+//         'uses' => 'StudentsController@getStudentScore'
+//     ])->where(['subject' => '(chinese|english|math)']);
+// });
+
+//使用 php artison make:controller Cool\TestController 建立一個控制器在app\Http\Cool目錄下
+// Route::get('cool','Cool\TestController@index');
+
+// 透過設定群組的namespace屬性統一調整群組中所使用的的命名空間.
+// 注意 Route::get('cool','TestController@index'); 沒有目錄名稱
+// Route::group(['namespace' => 'Cool'], function(){
+//     Route::get('cool','TestController@index');
+// });
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

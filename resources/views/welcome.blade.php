@@ -83,7 +83,12 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
+                @component('alert')
+                    @slot('title')
+                        無權限
+                    @endslot
+                    <strong>哦不！</strong>你沒有這個權限！
+                @endcomponent
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
