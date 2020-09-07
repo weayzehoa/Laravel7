@@ -6,7 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">排行榜</div>
+                <div class="card-header">
+                    <a href="<?php echo action('BoardController@getIndex'); ?>" class="nav-link">
+                        排行榜
+                    </a>
+                </div>
                 <div class="card-body p-1">
                     <table class="table table-hover m-0">
                         <thead class="thead-dark">
@@ -34,6 +38,9 @@
                                 <td>
                                     <a href="{{ route('students', ['student_no' => $score->student->no ]) }}" class="btn btn-info btn-sm">
                                         查看學生資料
+                                    </a>
+                                    <a href="{{ action('SchoolController@edit', ['student_no' => $score->student->no]) }}" class="btn btn-success btn-sm">
+                                        編輯
                                     </a>
                                 </td>
                             </tr>
