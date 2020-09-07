@@ -10,36 +10,36 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5 text-right p-0">學號：</div>
-                        <div class="col-md-5 p-0">{{ $student_no }}</div>
+                        <div class="col-md-5 p-0">{{ $student->no }}</div>
                     </div>
                     <div class="row">
                         <div class="col-md-5 text-right p-0">姓名：</div>
-                        <div class="col-md-5 p-0">小明</div>
+                        <div class="col-md-5 p-0">{{ $user->name }}</div>
                     </div>
                     <div class="row">
                         <div class="col-md-5 text-right p-0">電話：</div>
-                        <div class="col-md-5 p-0">0912345678</div>
+                        <div class="col-md-5 p-0">{{ $user->tel }}</div>
                     </div>
                     <div class="row">
                         <div class="col-md-5 text-right p-0">信箱：</div>
-                        <div class="col-md-5 p-0">min@mail.com</div>
+                        <div class="col-md-5 p-0">{{ $user->email }}</div>
                     </div>
                     @if( is_null($subject) || $subject == 'chinese' )
                         <div class="row">
                             <div class="col-md-5 text-right p-0">國文：</div>
-                            <div class="col-md-5 p-0">60</div>
+                            <div class="col-md-5 p-0">{{ $score->chinese }}</div>
                         </div>
                     @endif
                     @if( is_null($subject) || $subject == 'english' )
                         <div class="row">
                             <div class="col-md-5 text-right p-0">英文：</div>
-                            <div class="col-md-5 p-0">60</div>
+                            <div class="col-md-5 p-0">{{ $score->english }}</div>
                         </div>
                     @endif
                     @if( is_null($subject) || $subject == 'math' )
                         <div class="row">
                             <div class="col-md-5 text-right p-0">數學：</div>
-                            <div class="col-md-5 p-0">60</div>
+                            <div class="col-md-5 p-0">{{ $score->math }}</div>
                         </div>
                      @endif
                 </div>
