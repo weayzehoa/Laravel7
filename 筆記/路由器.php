@@ -37,21 +37,8 @@ Route::group(['namespace' => 'Cool'], function(){
 	Route::get('cool', 'TestController@index');
 });
 
-
-// //編輯學生資料
-// Route::get('edit/{student_no}', 'SchoolController@edit');
-// Route::post('edit/{student_no}', 'SchoolController@update');
-
-
-Route::group(['middleware' => 'auth'], function(){
-	Route::get('edit', 'SchoolController@edit');
-	Route::post('edit', 'SchoolController@update');
-});
-
-Route::get('login', 'AuthController@getLogin');
-Route::post('login', 'AuthController@postLogin');
-Route::get('logout', 'AuthController@getLogout');
-
+Route::get('edit/{student_no}', 'SchoolController@edit');
+Route::post('edit/{student_no}', 'SchoolController@update');
 
 /*
 |--------------------------------------------------------------------------
@@ -189,7 +176,7 @@ Route::get('logout', 'AuthController@getLogout');
 //         Route::get('{no}/{subject?}', function($no,$subject){
 //             return '編號: ' . $no . ' 的 ' . $subject . ' 成績';
 //         })->where(['subject' => '(chinese|english|math)']);
-
+    
 //         Route::get('{no}/{subject?}/score/', function($no,$subject=null){
 //             $subject == 'chinese' ? $score = '92' : '';
 //             $subject == 'english' ? $score = '95' : '';

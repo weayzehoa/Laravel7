@@ -18,15 +18,16 @@
                             </button>
                         </div>
                     @endisset
-                    
-                    <form action="{{ action('SchoolController@update', ['student_no' => $student->no]) }}" method="POST">
+
+                    {{-- <form action="{{ action('SchoolController@update', ['student_no' => $student->no]) }}" method="POST"> --}}
+                    <form action="{{ action('SchoolController@update') }}" method="POST">
                         {{ csrf_field() }}
-                
+
                         <div class="form-group">
                             <label>信箱</label>
                             <input type="email" class="form-control" name="email" value="{{ $student->user->email }}" disabled>
                         </div>
-                
+
                         <div class="form-group">
                             <label for="name">姓名：</label>
                             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ $student->user->name }}">
@@ -46,7 +47,7 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-1">
                                 <button type="submit" class="btn btn-primary btn-block">

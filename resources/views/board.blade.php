@@ -39,9 +39,9 @@
                                     <a href="{{ route('students', ['student_no' => $score->student->no ]) }}" class="btn btn-info btn-sm">
                                         查看學生資料
                                     </a>
-                                    <a href="{{ action('SchoolController@edit', ['student_no' => $score->student->no]) }}" class="btn btn-success btn-sm">
+                                    {{-- <a href="{{ action('SchoolController@edit', ['student_no' => $score->student->no]) }}" class="btn btn-success btn-sm">
                                         編輯
-                                    </a>
+                                    </a> --}}
                                 </td>
                             </tr>
                             @endforeach
